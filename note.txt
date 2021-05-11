@@ -1,2 +1,9 @@
 my_nginx en nginx fais gaffe 
+Minikube cree une vm (SHELL) > kubeernete host dedans et gere les differents containeires (docker) > Docker stock les services
+Les YAML servent a configuer kubernete en detaillant 
+kubernete gere donc les pods initialis2 ppar les fichier YAML
+
+Pour link la vm et les services (dockers) eval $(minikube docker-env)
+
+
 
