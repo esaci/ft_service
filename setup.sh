@@ -20,9 +20,13 @@ envsubst '$IP_TO_SUBST' < src/manifests/phpmyadmin.yaml > src/yaml/phpmyadmin.ya
 docker build -t e_phpmyadmin src/phpmyadmin > /dev/null 2>&1
 kubectl apply -f ./src/yaml/phpmyadmin.yaml
 
-docker build -t my_mysql srcs/mysql > /dev/null 2>&1
-kubectl apply -f ./srcs/YAML/mysql.yaml
+docker build -t my_mysql src/mysql > /dev/null 2>&1
+kubectl apply -f ./src/yaml/mysql.yaml
 
 envsubst '$IP_TO_SUBST' < src/manifests/wordpress.yaml > src/yaml/wordpress.yaml
 docker build -t my_wordpress src/wordpress > /dev/null 2>&1
 kubectl apply -f ./src/yaml/wordpress.yaml 
+
+envsubst '$IP_TO_SUBST' < srcs/to_subst/ftps.yaml > srcs/YAML/ftps.yaml
+docker build -t my_ftps srcs/ftps > /dev/null 2>&1
+kubectl apply -f ./srcs/YAML/ftps.yaml

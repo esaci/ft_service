@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps-service
+  annotations:
+    metallb.universe.tf/allow-shared-ip: "sharing key"
+  labels:
+    app: ftps-service
+spec:
+  selector:
+    app: ftps-pod
+  type: LoadBalancer
+  loadBalancerIP: ${IP_TO_SUBST}
+  ports:
+  - port: 20
+    name: ftps-svc-port1
+    targetPort: ftps-cont-port1
+    protocol: TCP
+    nodePort: 20
+  - port: 21
+    name: ftps-svc-port2
+    targetPort: ftps-cont-port2
+    protocol: TCP
+    nodePort: 21
+  - port: 30020
+    name: ftps-svc-port3
+    targetPort: ftps-cont-port3
+    protocol: TCP
+    nodePort: 30020
+
+--- 
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ftps
+  labels:
+    app: ftps-deployment
+spec:
+  selector:
+    matchLabels:
+      app: ftps-pod
+  template:
+    metadata:
+      labels:
+        app: ftps-pod
+    spec:
+      containers:
+      - name: ftps
+        image: my_ftps
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 20
+          name: ftps-cont-port1
+        - containerPort: 21
+          name: ftps-cont-port2
+        - containerPort: 30020
+          name: ftps-cont-port3
+        env:
+        - name: IP_TO_SUBST
+          value: ${IP_TO_SUBST}
+        volumeMounts:
+        - name: ftps-volume
+          mountPath: /home/
+      volumes:
+      - name: ftps-volume
+        persistentVolumeClaim:
+          claimName: ftps-pv-claim
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ftps-pv-claim
+  labels:
+    app: ftps-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Mi
