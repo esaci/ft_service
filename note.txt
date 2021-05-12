@@ -5,5 +5,6 @@ kubernete gere donc les pods initialis2 ppar les fichier YAML
 
 Pour link la vm et les services (dockers) eval $(minikube docker-env)
 
-
+rsa 2048 au lieu de 4096 dans openssl
+init_wp.sh jai pas mis les #
 

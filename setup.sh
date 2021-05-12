@@ -10,7 +10,19 @@ kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.9.5/manife
 envsubst '$IP_TO_SUBST' < ./src/manifests/metallb-config.yaml  > ./src/yaml/metallb-config.yaml
 kubectl apply -f ./src/yaml/metallb-config.yaml
 
+envsubst '$IP_TO_SUBST' < src/nginx/src/patron.conf > src/nginx/src/nginx.conf
 envsubst '$IP_TO_SUBST' < src/manifests/nginx.yaml > src/yaml/nginx.yaml
 
-docker build -t nginx src/nginx > /dev/null 2>&1
+docker build -t e_nginx src/nginx > /dev/null 2>&1
 kubectl apply -f ./src/yaml/nginx.yaml
+
+envsubst '$IP_TO_SUBST' < src/manifests/phpmyadmin.yaml > src/yaml/phpmyadmin.yaml
+docker build -t e_phpmyadmin src/phpmyadmin > /dev/null 2>&1
+kubectl apply -f ./src/yaml/phpmyadmin.yaml
+
+docker build -t my_mysql srcs/mysql > /dev/null 2>&1
+kubectl apply -f ./srcs/YAML/mysql.yaml
+
+envsubst '$IP_TO_SUBST' < src/manifests/wordpress.yaml > src/yaml/wordpress.yaml
+docker build -t my_wordpress src/wordpress > /dev/null 2>&1
+kubectl apply -f ./src/yaml/wordpress.yaml 
