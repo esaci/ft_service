@@ -10,7 +10,7 @@ spec:
   selector:
     app: phpmyadmin-pod
   type: LoadBalancer
-  loadBalancerIP: 
+  loadBalancerIP: 172.17.0.2
   ports:
   - port: 5000
     name: phpmyadmin-svc-port
@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: phpmyadmin
-        image: my_phpmyadmin
+        image: e_phpmyadmin
         imagePullPolicy: Never
         ports:
         - containerPort: 5000

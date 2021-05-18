@@ -1,0 +1,15 @@
+apiVersion: 1
+
+datasources:
+- name: telegraf
+  orgId: 1
+  type: influxdb
+  access: proxy
+  url: ${INFLUXDB_URL}
+  database: telegraf
+  isDefault: true
+  version: 1
+  editable: false
+  basicAuth: true
+  basicAuthUser: user
+  basicAuthPassword: password

@@ -10,7 +10,7 @@ spec:
   selector:
     app: ftps-pod
   type: LoadBalancer
-  loadBalancerIP: ${IP_TO_SUBST}
+  loadBalancerIP: 172.17.0.2
   ports:
   - port: 20
     name: ftps-svc-port1
@@ -58,7 +58,7 @@ spec:
           name: ftps-cont-port3
         env:
         - name: IP_TO_SUBST
-          value: ${IP_TO_SUBST}
+          value: 172.17.0.2
         volumeMounts:
         - name: ftps-volume
           mountPath: /home/

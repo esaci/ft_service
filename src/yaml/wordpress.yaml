@@ -10,7 +10,7 @@ spec:
   selector:
     app: wp-pod
   type: LoadBalancer
-  loadBalancerIP: 
+  loadBalancerIP: 172.17.0.2
   ports:
   - port: 5050
     name: wp-service-port
@@ -37,14 +37,14 @@ spec:
     spec:
       containers:
       - name: wordpress
-        image: my_wordpress
+        image: e_wordpress
         imagePullPolicy: Never
         ports:
         - containerPort: 5050
           name: wp-cont-port
         env:
         - name: IP_MINIKUBE
-          value: 
+          value: 172.17.0.2
         - name: MYSQL_IP
           value: mysql-service
         volumeMounts:

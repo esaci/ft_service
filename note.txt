@@ -8,3 +8,23 @@ Pour link la vm et les services (dockers) eval $(minikube docker-env)
 rsa 2048 au lieu de 4096 dans openssl
 init_wp.sh jai pas mis les #
 
+leak erreur lecture chaine de caractere
+une image u service
+livenessprobe wp-img.yaml
+mysql-img.yaml
+c auoi un cluster kubernetes
+creer l4interface phpmyadmin
+parametrage nginx
+faire mysql phpmyadmin puis wordpress
+puis interface
+puis ftps
+grafan et influx servent ensemble sert a visuel
+un pod un svc : divise cote image et service
+
+****************
+jai modif le dockerfile de influx
+
+
+------------------------------------------
+Modifier tout les IP TOSUBST
+Cest auoi les container  port ? comment sont ils decide

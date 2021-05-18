@@ -20,16 +20,25 @@ envsubst '$IP_TO_SUBST' < src/manifests/phpmyadmin.yaml > src/yaml/phpmyadmin.ya
 docker build -t e_phpmyadmin src/phpmyadmin > /dev/null 2>&1
 kubectl apply -f ./src/yaml/phpmyadmin.yaml
 
-docker build -t my_mysql src/mysql > /dev/null 2>&1
+docker build -t e_mysql src/mysql > /dev/null 2>&1
 kubectl apply -f ./src/yaml/mysql.yaml
 
 envsubst '$IP_TO_SUBST' < src/manifests/wordpress.yaml > src/yaml/wordpress.yaml
-docker build -t my_wordpress src/wordpress > /dev/null 2>&1
+docker build -t e_wordpress src/wordpress > /dev/null 2>&1
 kubectl apply -f ./src/yaml/wordpress.yaml 
 
 envsubst '$IP_TO_SUBST' < src/manifests/ftps.yaml > src/yaml/ftps.yaml
-docker build -t my_ftps src/ftps > /dev/null 2>&1
+docker build -t e_ftps src/ftps > /dev/null 2>&1
 kubectl apply -f ./src/yaml/ftps.yaml
 
-docker build -t my_influxdb src/influxdb > /dev/null 2>&1
+docker build -t e_influxdb src/influxdb > /dev/null 2>&1
 kubectl apply -f ./src/yaml/influxdb.yaml
+
+docker build -t e_telegraf src/telegraf > /dev/null 2>&1
+kubectl apply -f ./src/yaml/telegraf.yaml
+
+envsubst '$IP_TO_SUBST' < src/manifests/grafana.yaml > src/YAML/grafana.yaml
+docker build -t e_grafana src/grafana > /dev/null 2>&1
+kubectl apply -f ./src/yaml/grafana.yaml
+
+minikube dashboard

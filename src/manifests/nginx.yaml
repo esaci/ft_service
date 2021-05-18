@@ -47,7 +47,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: my_nginx
+        image: e_nginx
         imagePullPolicy: Never
         ports:
         - containerPort: 30022
