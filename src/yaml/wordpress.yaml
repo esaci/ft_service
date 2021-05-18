@@ -10,7 +10,7 @@ spec:
   selector:
     app: wp-pod
   type: LoadBalancer
-  loadBalancerIP: 172.17.0.2
+  loadBalancerIP: 
   ports:
   - port: 5050
     name: wp-service-port
@@ -44,7 +44,7 @@ spec:
           name: wp-cont-port
         env:
         - name: IP_MINIKUBE
-          value: 172.17.0.2
+          value: 
         - name: MYSQL_IP
           value: mysql-service
         volumeMounts:

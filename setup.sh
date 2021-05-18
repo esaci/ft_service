@@ -27,6 +27,9 @@ envsubst '$IP_TO_SUBST' < src/manifests/wordpress.yaml > src/yaml/wordpress.yaml
 docker build -t my_wordpress src/wordpress > /dev/null 2>&1
 kubectl apply -f ./src/yaml/wordpress.yaml 
 
-envsubst '$IP_TO_SUBST' < srcs/to_subst/ftps.yaml > srcs/YAML/ftps.yaml
-docker build -t my_ftps srcs/ftps > /dev/null 2>&1
-kubectl apply -f ./srcs/YAML/ftps.yaml
+envsubst '$IP_TO_SUBST' < src/manifests/ftps.yaml > src/yaml/ftps.yaml
+docker build -t my_ftps src/ftps > /dev/null 2>&1
+kubectl apply -f ./src/yaml/ftps.yaml
+
+docker build -t my_influxdb src/influxdb > /dev/null 2>&1
+kubectl apply -f ./src/yaml/influxdb.yaml
