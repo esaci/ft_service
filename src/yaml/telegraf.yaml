@@ -16,7 +16,7 @@ spec:
       serviceAccountName: telegraf-account
       containers:
       - name: telegraf
-        image: my_telegraf
+        image: e_telegraf
         imagePullPolicy: Never
         env:
         - name: IP_MINIKUBE

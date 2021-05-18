@@ -10,7 +10,7 @@ spec:
   selector:
     app: grafana-pod
   type: LoadBalancer
-  loadBalancerIP: ${IP_TO_SUBST}
+  loadBalancerIP: 172.17.0.2
   ports:
   - port: 3000
     name: grafana-svc-port
@@ -37,13 +37,13 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: my_grafana
+        image: e_grafana
         imagePullPolicy: Never
         ports:
         - containerPort: 3000
           name: grafana-port
         env:
         - name: IP_MINIKUBE
-          value: ${IP_TO_SUBST}
+          value: 172.17.0.2
         - name: INFLUXDB_URL
           value: http://influxdb-service:8086
